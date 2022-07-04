@@ -1,5 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,300&display=swap');
+
 * {
-	border: 0; 
-	padding: 0;
-	margin: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.694), rgba(0, 0, 0, 0.705)),
+    url('../images/iphone-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 90%, 100%;
+  color: white;
+}
+
+main {
+  padding-block: 1rem;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.fill {
+  background-color: white;
+}
+
+.entered-code-display {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  .circle {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    border: 1px solid white;
+    transition: all .3s ease-in;
+  }
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(3, min(30vw, 8rem));
+  gap: min(2vw, 1rem);
+  justify-content: center;
+}
+
+main button:first-child {
+  order: 1;
+  grid-column: 2;
+}
+
+button {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.159);
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-transform: uppercase;
+
+  &:nth-child(2) span:last-child {
+    height: 1rem;
+  }
+
+  &:nth-child(1) span:last-child {
+    position: absolute;
+  }
+
+  span:nth-child(2) {
+    font-size: 0.75rem;
+  }
+}
+
+.error {
+  animation-name: error;
+  animation-duration: 1s;
+}
+
+@keyframes error {
+  0% {
+
+  }
+  20% {
+    transform: translateX(2rem);
+  }
+  40% {
+    transform: translateX(-2rem);
+  }
+  60% {
+    transform: translateX(1rem);
+  }
+  80% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
