@@ -3,7 +3,9 @@ const keyboard = document.createElement('div');
 const title = document.createElement('h1');
 const codeDisplay = document.createElement('h2');
 const enteredCodeDisplay = document.createElement('div');
-const timeoutInterval = 1000 * 1;
+const bottomRow = document.createElement('div');
+const deleteButton = document.createElement('button');
+const timeoutInterval = 1000 * 1.3;
 const keyboardAlphabet = {
   2: 'abc',
   3: 'def',
@@ -30,10 +32,17 @@ creatInputButtonsToKeyboard();
 
 keyboard.classList.add('keyboard');
 page.append(keyboard);
+deleteButton.innerText = 'Delete';
+deleteButton.addEventListener('click', deleteCode);
+bottomRow.append(deleteButton);
+page.append(bottomRow);
 
 function checkPassCode(number) {
   const codeDisplay = document.querySelector('h2:nth-child(3)');
   const buttons = document.querySelectorAll('button');
+  const deletebutton = document.querySelector('div:last-child button');
+
+  deleteButton.disabled = false;
   enteredCode += number;
   if (enteredCode.length === 4 && enteredCode === code) {
     buttons.forEach((button) => {
@@ -61,10 +70,12 @@ function checkPassCode(number) {
     fillEnteredCodeDisplay(enteredCode.length);
     enteredCode = '';
     setTimeout(() => {
+      fillEnteredCodeDisplay(enteredCode.length);
+    }, timeoutInterval - 300);
+    setTimeout(() => {
       buttons.forEach((button) => {
         button.disabled = false;
       });
-      fillEnteredCodeDisplay(enteredCode.length);
       enteredCodeDisplay.classList.remove('error');
     }, timeoutInterval);
     return;
@@ -111,4 +122,13 @@ function fillEnteredCodeDisplay(codeLength) {
       circle.classList.add('fill');
     }
   });
+}
+
+function deleteCode() {
+  button = document.querySelector('div:last-child button');
+  if (enteredCode.length === 0) {
+    button.disabled = true;
+  }
+  enteredCode = enteredCode.slice(0, -1);
+  fillEnteredCodeDisplay(enteredCode.length);
 }

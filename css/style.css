@@ -15,6 +15,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 90%, 100%;
+  overscroll-behavior: none;
   color: white;
 }
 
@@ -57,13 +58,7 @@ h2 {
   gap: min(2vw, 1rem);
   justify-content: center;
 }
-
-main button:first-child {
-  order: 1;
-  grid-column: 2;
-}
-
-button {
+.keyboard button {
   aspect-ratio: 1;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.159);
@@ -76,19 +71,36 @@ button {
   align-items: center;
   text-transform: uppercase;
 }
-button:nth-child(2) span:last-child {
+.keyboard button:nth-child(2) span:last-child {
   height: 1rem;
 }
-button:nth-child(1) span:last-child {
+.keyboard button:nth-child(1) span:last-child {
   position: absolute;
 }
-button span:nth-child(2) {
+.keyboard button span:nth-child(2) {
   font-size: 0.75rem;
+}
+
+div:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+div:last-child button {
+  background-color: transparent;
+  color: white;
+}
+div:last-child button:disabled {
+  color: rgba(255, 255, 255, 0.347);
+}
+
+main button:first-child {
+  order: 1;
+  grid-column: 2;
 }
 
 .error {
   animation-name: error;
-  animation-duration: 1s;
+  animation-duration: 1.3s;
 }
 
 @keyframes error {
