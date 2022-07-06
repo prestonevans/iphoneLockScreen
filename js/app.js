@@ -34,6 +34,7 @@ keyboard.classList.add('keyboard');
 page.append(keyboard);
 deleteButton.innerText = 'Delete';
 deleteButton.addEventListener('click', deleteCode);
+deleteButton.disabled = true
 bottomRow.append(deleteButton);
 page.append(bottomRow);
 
@@ -58,6 +59,7 @@ function checkPassCode(number) {
       buttons.forEach((button) => {
         button.disabled = false;
       });
+      deleteButton.disabled = true
       codeDisplay.innerText = `Code: ${code}`;
     }, 700);
     return;
@@ -76,6 +78,7 @@ function checkPassCode(number) {
       buttons.forEach((button) => {
         button.disabled = false;
       });
+      deleteButton.disabled = true
       enteredCodeDisplay.classList.remove('error');
     }, timeoutInterval);
     return;
@@ -125,10 +128,10 @@ function fillEnteredCodeDisplay(codeLength) {
 }
 
 function deleteCode() {
-  button = document.querySelector('div:last-child button');
-  if (enteredCode.length === 0) {
-    button.disabled = true;
-  }
+  const deleteButton = document.querySelector('div:last-child button');
   enteredCode = enteredCode.slice(0, -1);
+  if (enteredCode.length === 0) {
+    deleteButton.disabled = true;
+  }
   fillEnteredCodeDisplay(enteredCode.length);
 }
